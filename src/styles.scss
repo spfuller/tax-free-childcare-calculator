@@ -1,0 +1,12 @@
+/* Global styles and Bootstrap import (default theme) */
+@use "bootstrap/scss/bootstrap";
+
+body {
+	padding: 1rem;
+	background: #f8f9fa;
+}
+
+/* small app-level tweaks */
+.main {
+	padding-top: 2rem;
+}
