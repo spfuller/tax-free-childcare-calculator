@@ -49,7 +49,6 @@ jobs:
         id: deployment
         uses: actions/upload-pages-artifact@v3
         with:
-          name: build
           path: dist
 
   deploy:
