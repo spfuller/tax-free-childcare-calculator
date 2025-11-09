@@ -51,22 +51,23 @@ describe('CalculatorComponent (DOM)', () => {
     input.dispatchEvent(new Event('input'));
     fixture.detectChanges();
 
-    // per-child YOU and GOVERNMENT values are shown in small tags within the row
-    const smalls = compiled.querySelectorAll('.mb-3 small');
-    // Expect at least two smalls: YOU and GOVERNMENT
-    expect(smalls.length).toBeGreaterThanOrEqual(2);
-    const youText = smalls[0].textContent || '';
-    const govText = smalls[1].textContent || '';
-    expect(youText).toContain('£80.00');
-    expect(govText).toContain('£20.00');
+    // Check exact amount values
+    const exactAmountText = compiled.querySelector('.text-muted')?.textContent || '';
+    expect(exactAmountText).toContain('Based on exact amount:');
 
-    // Totals shown at bottom
-    const totals = compiled.querySelectorAll('.d-flex.justify-content-between');
-    expect(totals.length).toBeGreaterThanOrEqual(2);
-    const totalYou = totals[0].querySelector('strong')?.textContent || '';
-    const totalGov = totals[1].querySelector('strong')?.textContent || '';
-    expect(totalYou).toContain('£80.00');
-    expect(totalGov).toContain('£20.00');
+    const exactAmounts = compiled.querySelectorAll('.mb-1 strong');
+    expect(exactAmounts.length).toBeGreaterThanOrEqual(2);
+    expect(exactAmounts[0].textContent).toContain('£80.00');
+    expect(exactAmounts[1].textContent).toContain('£20.00');
+
+    // Check total exact amounts
+    const exactTotals =
+      compiled
+        .querySelector('.card.bg-light')
+        ?.querySelectorAll('.d-flex.justify-content-between strong') || [];
+    expect(exactTotals.length).toBeGreaterThanOrEqual(2);
+    expect(exactTotals[0].textContent).toContain('£80.00');
+    expect(exactTotals[1].textContent).toContain('£20.00');
   });
 
   it('prevents negative values by resetting to zero', () => {
@@ -79,8 +80,7 @@ describe('CalculatorComponent (DOM)', () => {
     input.dispatchEvent(new Event('input'));
     fixture.detectChanges();
 
-    const smalls = compiled.querySelectorAll('.mb-3 small');
-    const youText = smalls[0].textContent || '';
-    expect(youText).toContain('£0.00');
+    const exactAmounts = compiled.querySelectorAll('.mb-1 strong');
+    expect(exactAmounts[0].textContent).toContain('£0.00');
   });
 });

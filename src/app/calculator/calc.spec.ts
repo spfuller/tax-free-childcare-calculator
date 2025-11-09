@@ -1,5 +1,34 @@
 import { describe, expect, it } from 'vitest';
-import { calculateShare } from './calc';
+import { calculateOptimalShare, calculateShare, roundUpToNearest10 } from './calc';
+
+describe('roundUpToNearest10', () => {
+  it('rounds up to the nearest 10', () => {
+    expect(roundUpToNearest10(91)).toBe(100);
+    expect(roundUpToNearest10(89)).toBe(90);
+    expect(roundUpToNearest10(100)).toBe(100);
+    expect(roundUpToNearest10(0)).toBe(0);
+  });
+});
+
+describe('calculateOptimalShare', () => {
+  it('calculates optimal share with rounding', () => {
+    const result = calculateOptimalShare(91);
+    expect(result.originalTotal).toBe(91);
+    expect(result.roundedTotal).toBe(100);
+    expect(result.difference).toBe(9);
+    expect(result.user).toBe(80);
+    expect(result.government).toBe(20);
+  });
+
+  it('returns same values when already at optimal amount', () => {
+    const result = calculateOptimalShare(100);
+    expect(result.originalTotal).toBe(100);
+    expect(result.roundedTotal).toBe(100);
+    expect(result.difference).toBe(0);
+    expect(result.user).toBe(80);
+    expect(result.government).toBe(20);
+  });
+});
 
 describe('calculateShare', () => {
   it('calculates 80/20 split for a normal amount', () => {

@@ -1,3 +1,7 @@
+export function roundUpToNearest10(value: number): number {
+  return Math.ceil(value / 10) * 10;
+}
+
 export function calculateShare(total: number) {
   const t = Number(total ?? 0);
   if (!Number.isFinite(t) || t < 0) {
@@ -7,6 +11,16 @@ export function calculateShare(total: number) {
   const user = Math.round((t * 0.8 + Number.EPSILON) * 100) / 100;
   const government = Math.round((t * 0.2 + Number.EPSILON) * 100) / 100;
   return { user, government };
+}
+
+export function calculateOptimalShare(total: number) {
+  const roundedTotal = roundUpToNearest10(total);
+  return {
+    originalTotal: total,
+    roundedTotal,
+    difference: roundedTotal - total,
+    ...calculateShare(roundedTotal),
+  };
 }
 
 export function formatCurrency(n: number) {

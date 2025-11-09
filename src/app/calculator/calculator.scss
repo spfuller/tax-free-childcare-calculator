@@ -1,8 +1,160 @@
+.container {
+  padding: 2rem 1rem;
+}
+
 .card {
   max-width: 720px;
   margin: 0 auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: none;
+  border-radius: 12px;
+
+  .card-title {
+    color: #2c3e50;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+  }
 }
 
-small {
-  color: #555;
+.child-entry {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  .child-label {
+    font-weight: 500;
+    color: #2c3e50;
+  }
+
+  .calculations {
+    height: 100%;
+    padding: 1rem;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+
+    &.exact {
+      background: #fff;
+      border: 1px solid #e9ecef;
+    }
+
+    &.optimal {
+      background: #e8f4fd;
+      border: 1px solid #cce5ff;
+    }
+  }
+}
+
+.amount-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+  }
+
+  .amount-label {
+    color: #6c757d;
+    min-width: 120px;
+    font-size: 0.9375rem;
+  }
+
+  .amount-value {
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 1.0625rem;
+  }
+}
+
+.amount-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  background: rgba(25, 118, 210, 0.1);
+
+  small {
+    font-weight: 500;
+  }
+}
+
+.totals-card {
+  margin-top: 1.5rem;
+  border-radius: 8px;
+
+  &.exact-totals {
+    background-color: #f8f9fa;
+  }
+
+  &.optimal-totals {
+    background-color: #e3f2fd;
+    border-color: #90caf9;
+
+    .card-subtitle {
+      color: #1976d2 !important;
+    }
+  }
+
+  .card-body {
+    padding: 1.25rem;
+  }
+
+  .card-subtitle {
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+
+  &.btn-primary {
+    background-color: #1976d2;
+    border-color: #1976d2;
+
+    &:hover {
+      background-color: #1565c0;
+      border-color: #1565c0;
+    }
+  }
+
+  &.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+
+    &:hover {
+      background-color: #c82333;
+      border-color: #bd2130;
+    }
+  }
+}
+
+.form-control {
+  border-radius: 6px;
+  border: 1px solid #ced4da;
+  padding: 0.5rem 0.75rem;
+
+  &:focus {
+    border-color: #1976d2;
+    box-shadow: 0 0 0 0.2rem rgba(25, 118, 210, 0.25);
+  }
+}
+
+.additional-info {
+  font-size: 0.875rem;
+  color: #666;
+  font-style: italic;
 }

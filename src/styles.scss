@@ -1,6 +1,11 @@
 /* Global styles and Bootstrap import (default theme) */
 @use "bootstrap/scss/bootstrap";
 
+$bootstrap-icons-font-dir: "bootstrap-icons/font/fonts";
+
+// Import the Sass files as usual
+@use "bootstrap-icons/font/bootstrap-icons";
+
 body {
 	padding: 1rem;
 	background: #f8f9fa;
