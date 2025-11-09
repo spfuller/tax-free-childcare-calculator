@@ -1,20 +1,15 @@
 # Tax-Free Childcare Calculator
 
+[![CI](https://github.com/spfuller/tax-free-childcare-calculator/actions/workflows/ci.yml/badge.svg)](https://github.com/spfuller/tax-free-childcare-calculator/actions/workflows/ci.yml)
+[![Coverage Artifacts](https://github.com/spfuller/tax-free-childcare-calculator/actions/workflows/ci.yml/badge.svg?branch=master&label=coverage)](https://github.com/spfuller/tax-free-childcare-calculator/actions/workflows/ci.yml)
+
 Simple Angular app to calculate the UK-style "tax-free childcare" 80/20 split per child invoice. For every £8 you pay, the government pays £2.
 
 This repository was scaffolded with the Angular CLI and uses modern Angular patterns (standalone components, signals, and the new template control-flow). Bootstrap (v5) is included for quick styling.
 
-CI status
+Coverage Reports
 
-You can add a workflow status badge to this README. Replace `<OWNER>` and `<REPO>` with your GitHub organization/user and repository name:
-
-```markdown
-![CI](https://github.com/<OWNER>/<REPO>/actions/workflows/ci.yml/badge.svg)
-```
-
-Coverage artifact
-
-The CI workflow uploads the coverage folder as an artifact when changes are pushed to `main`/`master`. You can download it from the workflow run page under `Artifacts`.
+The CI workflow automatically generates and uploads coverage reports when changes are pushed to main/master. Click the badges above to access the workflow runs and coverage artifacts.
 
 Quick commands (PowerShell)
 
@@ -51,7 +46,6 @@ npm run test:coverage
 Notes on testing
 
 - This project uses the Angular experimental unit-test builder with Vitest as the runner. Tests are executed through the Angular CLI (`ng test`) so the CLI can generate the correct Vitest configuration for Angular internals.
-- Test setup initializes the Angular TestBed environment (see `src/test-setup.ts`).
 
 Files of interest
 
@@ -60,11 +54,18 @@ Files of interest
 - `src/app/calculator/calculator.html` — component template (uses control-flow and Bootstrap classes).
 - `src/app/calculator/calc.spec.ts` and `src/app/calculator/calculator.spec.ts` — Vitest unit and DOM tests.
 
-CI guidance
+CI and Coverage
 
-- Use `npm run test:ci` in CI to run tests once without watch mode. The `test:coverage` script runs tests and emits coverage reports (configured by the Angular CLI builder).
+- CI runs automatically on pushes and pull requests using GitHub Actions.
+- Coverage reports are generated and uploaded as artifacts when changes are pushed to main/master.
+- Use `npm run test:ci` locally to run tests in CI mode (no watch).
+- Use `npm run test:coverage` locally to generate coverage reports.
 
-If you'd like I can add a GitHub Actions workflow that runs `npm ci` and `npm run test:ci` on push/PR — tell me and I'll create it.
+The coverage artifacts can be found on the Actions page by:
+
+1. Click the CI badge above or visit the Actions tab
+2. Select the workflow run (main/master branch runs only)
+3. Download the coverage artifact from the Artifacts section
 
 License
 MIT
