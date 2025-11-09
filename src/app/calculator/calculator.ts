@@ -18,24 +18,24 @@ export class CalculatorComponent {
   protected total = computed(() => this.values().reduce((s: number, t: number) => s + t, 0));
 
   protected totalUser = computed(() =>
-    this.values().reduce((s: number, t: number) => s + calculateShare(t).user, 0)
+    this.values().reduce((s: number, t: number) => s + calculateShare(t).user, 0),
   );
 
   protected totalGovernment = computed(() =>
-    this.values().reduce((s: number, t: number) => s + calculateShare(t).government, 0)
+    this.values().reduce((s: number, t: number) => s + calculateShare(t).government, 0),
   );
 
   // optimal rounded totals
   protected totalOptimalUser = computed(() =>
-    this.values().reduce((s: number, t: number) => s + calculateOptimalShare(t).user, 0)
+    this.values().reduce((s: number, t: number) => s + calculateOptimalShare(t).user, 0),
   );
 
   protected totalOptimalGovernment = computed(() =>
-    this.values().reduce((s: number, t: number) => s + calculateOptimalShare(t).government, 0)
+    this.values().reduce((s: number, t: number) => s + calculateOptimalShare(t).government, 0),
   );
 
   protected totalOptimalDifference = computed(() =>
-    this.values().reduce((s: number, t: number) => s + calculateOptimalShare(t).difference, 0)
+    this.values().reduce((s: number, t: number) => s + calculateOptimalShare(t).difference, 0),
   );
 
   addChild() {
@@ -49,7 +49,7 @@ export class CalculatorComponent {
   updateAmount(index: number, value: string) {
     const n = Number(value);
     this.values.update((arr: number[]) =>
-      arr.map((v, i) => (i === index ? (Number.isFinite(n) && n >= 0 ? n : 0) : v))
+      arr.map((v, i) => (i === index ? (Number.isFinite(n) && n >= 0 ? n : 0) : v)),
     );
   }
 
