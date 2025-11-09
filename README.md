@@ -3,129 +3,111 @@
 [![CI](https://github.com/spfuller/tax-free-childcare-calculator/actions/workflows/ci.yml/badge.svg)](https://github.com/spfuller/tax-free-childcare-calculator/actions/workflows/ci.yml)
 [![Coverage Artifacts](https://github.com/spfuller/tax-free-childcare-calculator/actions/workflows/ci.yml/badge.svg?branch=master&label=coverage)](https://github.com/spfuller/tax-free-childcare-calculator/actions/workflows/ci.yml)
 
-Simple Angular app to calculate the UK-style "tax-free childcare" 80/20 split per child invoice. For every £8 you pay, the government pays £2.
+A modern Angular app to calculate UK tax-free childcare contributions. For every £8 you pay towards childcare, the government contributes £2 (80/20 split).
 
-This repository was scaffolded with the Angular CLI and uses modern Angular patterns (standalone components, signals, and the new template control-flow). Bootstrap (v5) is included for quick styling.
+## Features
 
-Coverage Reports
+- Add multiple children with individual invoice totals
+- Automatic calculation of your contribution (80%) and government contribution (20%)
+- Running totals for both your total and the government's total contribution
+- Input validation ensures positive numbers only
+- Responsive design with Bootstrap v5
 
-The CI workflow automatically generates and uploads coverage reports when changes are pushed to main/master. Click the badges above to access the workflow runs and coverage artifacts.
+## Technical Stack
 
-Quick commands (PowerShell)
+- Angular 20.3.x with standalone components
+- Modern Angular patterns (signals, computed values, new control flow)
+- Bootstrap v5 for styling
+- Vitest for testing via Angular experimental unit-test builder
 
-1. Install dependencies
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18 or later
+- npm 9 or later
+- PowerShell Core (pwsh) for Windows users
+
+### Installation
+
+1. Clone the repository:
+
+```powershell
+git clone https://github.com/spfuller/tax-free-childcare-calculator.git
+cd tax-free-childcare-calculator
+```
+
+2. Install dependencies:
 
 ```powershell
 npm install
 ```
 
-2. Run the dev server (open http://localhost:4200)
+### Development Commands
+
+Start the development server:
 
 ```powershell
 npm start
 ```
 
-3. Run tests (watch mode)
+Then open your browser to http://localhost:4200. The app will automatically reload when you make changes.
+
+### Testing Commands
+
+Run tests in watch mode (development):
 
 ```powershell
 npm run test:watch
 ```
 
-4. Run tests once (CI-friendly)
+Run tests once (CI mode):
 
 ```powershell
 npm run test:ci
 ```
 
-5. Run tests and produce coverage
+Generate coverage report:
 
 ```powershell
 npm run test:coverage
 ```
 
-Notes on testing
+### Key Files
 
-- This project uses the Angular experimental unit-test builder with Vitest as the runner. Tests are executed through the Angular CLI (`ng test`) so the CLI can generate the correct Vitest configuration for Angular internals.
+- `src/app/calculator/calc.ts` — Pure calculation functions for the 80/20 split
+- `src/app/calculator/calculator.ts` — Main calculator component using signals
+- `src/app/calculator/calculator.html` — Template with Bootstrap styling
+- `src/app/calculator/calc.spec.ts` — Unit tests for calculation logic
 
-Files of interest
+### CI/CD and Coverage
 
-- `src/app/calculator/calc.ts` — pure calculation helpers for the 80/20 split.
-- `src/app/calculator/calculator.ts` — standalone `CalculatorComponent` (signals + computed).
-- `src/app/calculator/calculator.html` — component template (uses control-flow and Bootstrap classes).
-- `src/app/calculator/calc.spec.ts` and `src/app/calculator/calculator.spec.ts` — Vitest unit and DOM tests.
+The project uses GitHub Actions for continuous integration:
 
-CI and Coverage
+- Automated tests run on every push and pull request
+- Coverage reports are generated and uploaded as artifacts
+- Coverage artifacts are available from the Actions tab (click badges above)
 
-- CI runs automatically on pushes and pull requests using GitHub Actions.
-- Coverage reports are generated and uploaded as artifacts when changes are pushed to main/master.
-- Use `npm run test:ci` locally to run tests in CI mode (no watch).
-- Use `npm run test:coverage` locally to generate coverage reports.
+## License
 
-The coverage artifacts can be found on the Actions page by:
-
-1. Click the CI badge above or visit the Actions tab
-2. Select the workflow run (main/master branch runs only)
-3. Download the coverage artifact from the Artifacts section
-
-License
 MIT
 
-# TaxFreeChildcareCalculator
+## Additional Commands
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.9.
+Build for production:
 
-## Development server
-
-To start a local development server, run:
-
-```bash
-ng serve
+```powershell
+npm run build
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+The build artifacts will be stored in the `dist/` directory.
 
-## Code scaffolding
+For more information on the Angular CLI and its capabilities, visit the [Angular CLI documentation](https://angular.dev/tools/cli).
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Contributing
 
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
