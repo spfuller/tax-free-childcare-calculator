@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-import { beforeEach, describe, expect, it } from 'vitest';
 import { CalculatorComponent } from './calculator';
 
 describe('CalculatorComponent (DOM)', () => {
@@ -52,22 +51,18 @@ describe('CalculatorComponent (DOM)', () => {
     fixture.detectChanges();
 
     // Check exact amount values
-    const exactAmountText = compiled.querySelector('.text-muted')?.textContent || '';
-    expect(exactAmountText).toContain('Based on exact amount:');
 
-    const exactAmounts = compiled.querySelectorAll('.mb-1 strong');
-    expect(exactAmounts.length).toBeGreaterThanOrEqual(2);
+    const exactAmounts = compiled.querySelectorAll('.calculations.exact .amount-value');
+    expect(exactAmounts.length).toBe(2);
     expect(exactAmounts[0].textContent).toContain('£80.00');
     expect(exactAmounts[1].textContent).toContain('£20.00');
 
     // Check total exact amounts
-    const exactTotals =
-      compiled
-        .querySelector('.card.bg-light')
-        ?.querySelectorAll('.d-flex.justify-content-between strong') || [];
-    expect(exactTotals.length).toBeGreaterThanOrEqual(2);
+    const exactTotals = compiled.querySelectorAll('.totals-card.exact-totals .amount-value');
+    expect(exactTotals.length).toEqual(3);
     expect(exactTotals[0].textContent).toContain('£80.00');
     expect(exactTotals[1].textContent).toContain('£20.00');
+    expect(exactTotals[2].textContent).toContain('£100.00');
   });
 
   it('prevents negative values by resetting to zero', () => {
@@ -80,7 +75,7 @@ describe('CalculatorComponent (DOM)', () => {
     input.dispatchEvent(new Event('input'));
     fixture.detectChanges();
 
-    const exactAmounts = compiled.querySelectorAll('.mb-1 strong');
+    const exactAmounts = compiled.querySelectorAll('.amount-value');
     expect(exactAmounts[0].textContent).toContain('£0.00');
   });
 });

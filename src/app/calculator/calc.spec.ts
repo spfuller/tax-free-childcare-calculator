@@ -1,4 +1,3 @@
-import { describe, expect, it } from 'vitest';
 import { calculateOptimalShare, calculateShare, roundUpToNearest10 } from './calc';
 
 describe('roundUpToNearest10', () => {
