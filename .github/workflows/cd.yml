@@ -2,7 +2,7 @@ name: CD to GitHub Pages
 
 on:
   push:
-    branches: [ $default-branch ]
+    branches: [master]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -20,7 +20,6 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-
   build:
     name: Build and upload artifact
 
