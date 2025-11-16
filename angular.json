@@ -87,9 +87,6 @@
             "codeCoverageExclude": ["**/*.{test,spec}.?(c|m)ts"],
             "codeCoverageReporters": ["html", "lcov", "text-summary"]
           }
-        },
-        "deploy": {
-          "builder": "angular-cli-ghpages:deploy"
         }
       }
     }
