@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+
 import { CalculatorComponent } from './calculator/calculator.component';
 
 @Component({
@@ -9,5 +10,5 @@ import { CalculatorComponent } from './calculator/calculator.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class App {
-  protected readonly title = signal('tax-free-childcare-calculator');
+  protected readonly title = signal('Tax-Free Childcare Calculator');
 }
