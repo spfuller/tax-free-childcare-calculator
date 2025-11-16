@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:dev": "ng build --configuration development",
     "build:github": "ng build --base-href=/tax-free-childcare-calculator/",
     "watch": "ng build --watch --configuration development",
     "test:watch": "ng test --watch",
