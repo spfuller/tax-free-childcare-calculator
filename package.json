@@ -5,11 +5,11 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:github": "ng build --base-href=/tax-free-childcare-calculator/",
     "watch": "ng build --watch --configuration development",
     "test:watch": "ng test --watch",
     "test:coverage": "ng test --no-watch --code-coverage",
     "test:ci": "ng test --no-watch",
-    "deploy": "ng deploy --base-href=/tax-free-childcare-calculator/",
     "format": "prettier --write ."
   },
   "prettier": {
@@ -45,7 +45,6 @@
     "@angular/cli": "^20.3.9",
     "@angular/compiler-cli": "^20.3.0",
     "@vitest/coverage-v8": "^3.2.4",
-    "angular-cli-ghpages": "^2.0.3",
     "jsdom": "^27.1.0",
     "prettier": "^3.6.2",
     "typescript": "~5.9.2",
