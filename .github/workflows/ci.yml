@@ -2,13 +2,13 @@ name: CI
 
 on:
   push:
-    branches: ["master"]
+    branches: [master]
   pull_request:
-    branches: ["master"]
+    branches: [master]
 
 jobs:
-  test:
-    name: Test
+  ci:
+    name: Build, Test and Collect Coverage
 
     runs-on: ubuntu-latest
 
@@ -25,32 +25,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run tests (CI)
-        run: npm run test:ci
+      - name: Run build
+        run: npm run build
 
-  coverage:
-    name: Coverage (main only)
-
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Use Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "22.x"
-          cache: "npm"
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Run tests and generate coverage
+      - name: Run tests with coverage
         run: npm run test:coverage
 
       - name: Upload coverage artifact
         uses: actions/upload-artifact@v4
         with:
           name: coverage
-          path: coverage/**
+          path: ./coverage/**
