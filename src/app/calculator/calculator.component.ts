@@ -3,11 +3,12 @@ import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@a
 import { FormsModule } from '@angular/forms';
 import { UUIDTypes, v4 } from 'uuid';
 
+import { ChildCardComponent } from '../child-card/child-card.component';
 import { CalculatorService } from './_services/calculator.service';
 
 @Component({
   selector: 'app-calculator',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ChildCardComponent],
   templateUrl: './calculator.component.html',
   styleUrls: ['./calculator.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

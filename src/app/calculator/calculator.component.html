@@ -8,79 +8,77 @@
   <div class="children-list">
     <form>
       @for (child of computedChildren(); track child.id; let i = $index; let itemCount = $count) {
-        <div class="child-card card mb-3">
-          <div class="card-body">
-            <div class="row align-items-center">
-              <div class="col">
-                <h5 class="text-primary mb-0">
-                  <i class="bi bi-person-circle me-1"></i> Child
-                  {{ i + 1 }}
-                </h5>
+        <app-child-card class="mb-3">
+          <div class="card-title row align-items-center mb-0">
+            <div class="col">
+              <h5 class="text-primary mb-0">
+                <i class="bi bi-person-circle me-1"></i> Child
+                {{ i + 1 }}
+              </h5>
+            </div>
+            @if (itemCount > 1) {
+              <div class="col-auto">
+                <button
+                  type="button"
+                  class="btn btn-sm btn-outline-danger"
+                  (click)="removeChild(child.id)"
+                  aria-label="Remove child"
+                >
+                  <i class="bi bi-trash3 me-1"></i> Remove
+                </button>
               </div>
-              @if (itemCount > 1) {
-                <div class="col-auto">
-                  <button
-                    type="button"
-                    class="btn btn-sm btn-outline-danger"
-                    (click)="removeChild(child.id)"
-                    aria-label="Remove child"
-                  >
-                    <i class="bi bi-trash3 me-1"></i> Remove
-                  </button>
-                </div>
-              }
+            }
+          </div>
+
+          <div class="row align-items-end">
+            <div class="col-md-4">
+              <label class="form-label fw-semibold text-primary-emphasis">Amount</label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-currency-pound"></i></span>
+                <input
+                  class="form-control form-control-lg"
+                  type="number"
+                  min="0"
+                  step="0.01"
+                  [name]="'child-amount-' + child.id"
+                  [ngModel]="child.amount"
+                  (ngModelChange)="updateAmount(child.id, $event)"
+                  aria-label="Child amount"
+                  placeholder="Enter amount"
+                />
+              </div>
             </div>
 
-            <div class="row align-items-end">
-              <div class="col-md-4">
-                <label class="form-label fw-semibold text-primary-emphasis">Amount</label>
-                <div class="input-group">
-                  <span class="input-group-text"><i class="bi bi-currency-pound"></i></span>
-                  <input
-                    class="form-control form-control-lg"
-                    type="number"
-                    min="0"
-                    step="0.01"
-                    [name]="'child-amount-' + child.id"
-                    [ngModel]="child.amount"
-                    (ngModelChange)="updateAmount(child.id, $event)"
-                    aria-label="Child amount"
-                    placeholder="Enter amount"
-                  />
+            <div class="col-md-8">
+              <div class="row g-3 g-md-1 small mt-0">
+                <div class="col-6">
+                  <span class="text-label text-secondary">Parent:</span>
+                  <span class="amount-value fw-semibold text-primary-emphasis">
+                    {{ child.parentContribution | currency: 'GBP' }}
+                  </span>
                 </div>
-              </div>
-
-              <div class="col-md-8">
-                <div class="row g-3 g-md-1 small mt-0">
-                  <div class="col-6">
-                    <span class="text-label text-secondary">Parent:</span>
-                    <span class="amount-value fw-semibold text-primary-emphasis">
-                      {{ child.parentContribution | currency: 'GBP' }}
-                    </span>
-                  </div>
-                  <div class="col-6">
-                    <span class="text-label text-secondary">Government:</span>
-                    <span class="amount-value fw-semibold text-primary-emphasis">
-                      {{ child.governmentContribution | currency: 'GBP' }}
-                    </span>
-                  </div>
-                  <div class="col-6">
-                    <span class="text-label text-secondary">Rounded Parent:</span>
-                    <span class="amount-value fw-semibold text-primary-emphasis">
-                      {{ child.roundedParent | currency: 'GBP' }}
-                    </span>
-                  </div>
-                  <div class="col-6">
-                    <span class="text-label text-secondary">Rounded Government:</span>
-                    <span class="amount-value fw-semibold text-primary-emphasis">
-                      {{ child.roundedGovernment | currency: 'GBP' }}
-                    </span>
-                  </div>
+                <div class="col-6">
+                  <span class="text-label text-secondary">Government:</span>
+                  <span class="amount-value fw-semibold text-primary-emphasis">
+                    {{ child.governmentContribution | currency: 'GBP' }}
+                  </span>
+                </div>
+                <div class="col-6">
+                  <span class="text-label text-secondary">Rounded Parent:</span>
+                  <span class="amount-value fw-semibold text-primary-emphasis">
+                    {{ child.roundedParent | currency: 'GBP' }}
+                  </span>
+                </div>
+                <div class="col-6">
+                  <span class="text-label text-secondary">Rounded Government:</span>
+                  <span class="amount-value fw-semibold text-primary-emphasis">
+                    {{ child.roundedGovernment | currency: 'GBP' }}
+                  </span>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </app-child-card>
       }
     </form>
   </div>
@@ -92,43 +90,39 @@
   </div>
 
   <section class="summary-section">
-    <div class="card child-card">
-      <div class="card-body">
-        <div class="card-title text-center">
-          <h2 class="text-primary">Summary</h2>
-        </div>
-        <div class="table-responsive">
-          <table class="table table-striped table-hover align-middle text-end mb-0">
-            <thead>
-              <tr>
-                <th class="text-start text-primary-emphasis">Contributions</th>
-                <th class="text-primary-emphasis">Parent</th>
-                <th class="text-primary-emphasis">Government</th>
-                <th class="text-primary-emphasis">Total</th>
-              </tr>
-            </thead>
-            <tbody>
-              @let total = totals();
-              <tr class="actual-totals">
-                <th class="text-start fw-semibold text-secondary">Actual</th>
-                <td class="text-secondary">{{ total.parent | currency: 'GBP' }}</td>
-                <td class="text-secondary">{{ total.government | currency: 'GBP' }}</td>
-                <td class="fw-semibold text-primary-emphasis">
-                  {{ total.total | currency: 'GBP' }}
-                </td>
-              </tr>
-              <tr class="rounded-totals">
-                <th class="text-start fw-semibold text-secondary">Rounded (To Nearest £10)</th>
-                <td class="text-secondary">{{ total.roundedParent | currency: 'GBP' }}</td>
-                <td class="text-secondary">{{ total.roundedGovernment | currency: 'GBP' }}</td>
-                <td class="fw-semibold text-primary-emphasis">
-                  {{ total.roundedTotal | currency: 'GBP' }}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+    <app-child-card>
+      <h2 class="card-title text-center text-primary">Summary</h2>
+      <div class="table-responsive">
+        <table class="table table-striped table-hover align-middle text-end mb-0">
+          <thead>
+            <tr>
+              <th class="text-start text-primary-emphasis">Contributions</th>
+              <th class="text-primary-emphasis">Parent</th>
+              <th class="text-primary-emphasis">Government</th>
+              <th class="text-primary-emphasis">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            @let total = totals();
+            <tr class="actual-totals">
+              <th class="text-start fw-semibold text-secondary">Actual</th>
+              <td class="text-secondary">{{ total.parent | currency: 'GBP' }}</td>
+              <td class="text-secondary">{{ total.government | currency: 'GBP' }}</td>
+              <td class="fw-semibold text-primary-emphasis">
+                {{ total.total | currency: 'GBP' }}
+              </td>
+            </tr>
+            <tr class="rounded-totals">
+              <th class="text-start fw-semibold text-secondary">Rounded (To Nearest £10)</th>
+              <td class="text-secondary">{{ total.roundedParent | currency: 'GBP' }}</td>
+              <td class="text-secondary">{{ total.roundedGovernment | currency: 'GBP' }}</td>
+              <td class="fw-semibold text-primary-emphasis">
+                {{ total.roundedTotal | currency: 'GBP' }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    </div>
+    </app-child-card>
   </section>
 </section>
