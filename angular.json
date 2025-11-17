@@ -37,7 +37,12 @@
               }
             ],
             "styles": ["src/styles.scss"],
-            "outputPath": "dist/tax-free-childcare-calculator"
+            "outputPath": "dist/tax-free-childcare-calculator",
+            "stylePreprocessorOptions": {
+              "sass": {
+                "silenceDeprecations": ["import"]
+              }
+            }
           },
           "configurations": {
             "production": {
