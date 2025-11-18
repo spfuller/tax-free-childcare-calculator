@@ -89,40 +89,5 @@
     </button>
   </div>
 
-  <section class="summary-section">
-    <app-child-card>
-      <h2 class="card-title text-center text-primary">Summary</h2>
-      <div class="table-responsive">
-        <table class="table table-striped table-hover align-middle text-end mb-0">
-          <thead>
-            <tr>
-              <th class="text-start text-primary-emphasis">Contributions</th>
-              <th class="text-primary-emphasis">Parent</th>
-              <th class="text-primary-emphasis">Government</th>
-              <th class="text-primary-emphasis">Total</th>
-            </tr>
-          </thead>
-          <tbody>
-            @let total = totals();
-            <tr class="actual-totals">
-              <th class="text-start fw-semibold text-secondary">Actual</th>
-              <td class="text-secondary">{{ total.parent | currency: 'GBP' }}</td>
-              <td class="text-secondary">{{ total.government | currency: 'GBP' }}</td>
-              <td class="fw-semibold text-primary-emphasis">
-                {{ total.total | currency: 'GBP' }}
-              </td>
-            </tr>
-            <tr class="rounded-totals">
-              <th class="text-start fw-semibold text-secondary">Rounded (To Nearest £10)</th>
-              <td class="text-secondary">{{ total.roundedParent | currency: 'GBP' }}</td>
-              <td class="text-secondary">{{ total.roundedGovernment | currency: 'GBP' }}</td>
-              <td class="fw-semibold text-primary-emphasis">
-                {{ total.roundedTotal | currency: 'GBP' }}
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </app-child-card>
-  </section>
+  <app-summary [children]="computedChildren()" />
 </section>
