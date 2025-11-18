@@ -3,12 +3,18 @@ import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@a
 import { FormsModule } from '@angular/forms';
 import { UUIDTypes, v4 } from 'uuid';
 
-import { ChildCardComponent } from '../child-card/child-card.component';
-import { CalculatorService } from './_services/calculator.service';
+import { ChildCardComponent } from '../child-card';
+import { SummaryComponent } from '../summary';
+import { CalculatorService } from './_services';
 
 @Component({
   selector: 'app-calculator',
-  imports: [CommonModule, FormsModule, ChildCardComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ChildCardComponent,
+    SummaryComponent
+  ],
   templateUrl: './calculator.component.html',
   styleUrls: ['./calculator.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -47,21 +53,4 @@ export class CalculatorComponent {
       ...this.calculatorService.calculateEntry(c.invoiceAmount ?? 0),
     })),
   );
-
-  protected readonly totals = computed(() => {
-    const entries = this.computedChildren();
-    const actualParent = entries.reduce((sum, c) => sum + c.parentContribution, 0);
-    const actualGovernment = entries.reduce((sum, c) => sum + c.governmentContribution, 0);
-    const roundedParent = entries.reduce((sum, c) => sum + c.roundedParent, 0);
-    const roundedGovernment = entries.reduce((sum, c) => sum + c.roundedGovernment, 0);
-
-    return {
-      parent: actualParent,
-      government: actualGovernment,
-      total: actualParent + actualGovernment,
-      roundedParent: roundedParent,
-      roundedGovernment: roundedGovernment,
-      roundedTotal: roundedParent + roundedGovernment,
-    };
-  });
 }
