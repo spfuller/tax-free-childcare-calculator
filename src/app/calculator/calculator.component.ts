@@ -1,20 +1,13 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { UUIDTypes, v4 } from 'uuid';
 
-import { ChildCardComponent } from '../child-card';
+import { ChildEntryComponent } from '../child-entry';
 import { SummaryComponent } from '../summary';
 import { CalculatorService } from './_services';
 
 @Component({
   selector: 'app-calculator',
-  imports: [
-    CommonModule,
-    FormsModule,
-    ChildCardComponent,
-    SummaryComponent
-  ],
+  imports: [ChildEntryComponent, SummaryComponent],
   templateUrl: './calculator.component.html',
   styleUrls: ['./calculator.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

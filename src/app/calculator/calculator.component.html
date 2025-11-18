@@ -8,77 +8,13 @@
   <div class="children-list">
     <form>
       @for (child of computedChildren(); track child.id; let i = $index; let itemCount = $count) {
-        <app-child-card class="mb-3">
-          <div class="card-title row align-items-center mb-0">
-            <div class="col">
-              <h5 class="text-primary mb-0">
-                <i class="bi bi-person-circle me-1"></i> Child
-                {{ i + 1 }}
-              </h5>
-            </div>
-            @if (itemCount > 1) {
-              <div class="col-auto">
-                <button
-                  type="button"
-                  class="btn btn-sm btn-outline-danger"
-                  (click)="removeChild(child.id)"
-                  aria-label="Remove child"
-                >
-                  <i class="bi bi-trash3 me-1"></i> Remove
-                </button>
-              </div>
-            }
-          </div>
-
-          <div class="row align-items-end">
-            <div class="col-md-4">
-              <label class="form-label fw-semibold text-primary-emphasis">Amount</label>
-              <div class="input-group">
-                <span class="input-group-text"><i class="bi bi-currency-pound"></i></span>
-                <input
-                  class="form-control form-control-lg"
-                  type="number"
-                  min="0"
-                  step="0.01"
-                  [name]="'child-amount-' + child.id"
-                  [ngModel]="child.amount"
-                  (ngModelChange)="updateAmount(child.id, $event)"
-                  aria-label="Child amount"
-                  placeholder="Enter amount"
-                />
-              </div>
-            </div>
-
-            <div class="col-md-8">
-              <div class="row g-3 g-md-1 small mt-0">
-                <div class="col-6">
-                  <span class="text-label text-secondary">Parent:</span>
-                  <span class="amount-value fw-semibold text-primary-emphasis">
-                    {{ child.parentContribution | currency: 'GBP' }}
-                  </span>
-                </div>
-                <div class="col-6">
-                  <span class="text-label text-secondary">Government:</span>
-                  <span class="amount-value fw-semibold text-primary-emphasis">
-                    {{ child.governmentContribution | currency: 'GBP' }}
-                  </span>
-                </div>
-                <div class="col-6">
-                  <span class="text-label text-secondary">Rounded Parent:</span>
-                  <span class="amount-value fw-semibold text-primary-emphasis">
-                    {{ child.roundedParent | currency: 'GBP' }}
-                  </span>
-                </div>
-                <div class="col-6">
-                  <span class="text-label text-secondary">Rounded Government:</span>
-                  <span class="amount-value fw-semibold text-primary-emphasis">
-                    {{ child.roundedGovernment | currency: 'GBP' }}
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </app-child-card>
+        <app-child-entry
+          [child]="child"
+          [index]="i"
+          [showDelete]="itemCount > 1"
+          (removeChild)="removeChild($event)"
+          (updateAmount)="updateAmount($event.id, $event.value)"
+        />
       }
     </form>
   </div>
