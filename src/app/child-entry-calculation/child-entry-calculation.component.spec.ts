@@ -1,3 +1,4 @@
+import { inputBinding } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ChildEntryCalculationComponent } from './child-entry-calculation.component';
@@ -11,7 +12,9 @@ describe('ChildEntryCalculationComponent', () => {
       imports: [ChildEntryCalculationComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ChildEntryCalculationComponent);
+    fixture = TestBed.createComponent(ChildEntryCalculationComponent, {
+      bindings: [inputBinding('label', () => 'Test Label'), inputBinding('value', () => 100)],
+    });
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
