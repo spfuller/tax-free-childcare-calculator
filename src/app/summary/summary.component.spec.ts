@@ -1,3 +1,4 @@
+import { inputBinding } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SummaryComponent } from './summary.component';
@@ -8,11 +9,12 @@ describe('SummaryComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SummaryComponent]
-    })
-    .compileComponents();
+      imports: [SummaryComponent],
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(SummaryComponent);
+    fixture = TestBed.createComponent(SummaryComponent, {
+      bindings: [inputBinding('children', () => [{}])],
+    });
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

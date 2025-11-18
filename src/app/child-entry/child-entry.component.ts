@@ -13,7 +13,15 @@ import { ChildEntryCalculationComponent } from '../child-entry-calculation';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChildEntryComponent {
-  child = input.required<any>();
+  child = input.required<{
+    amount: number;
+    parentContribution: number;
+    governmentContribution: number;
+    rounded: number;
+    roundedParent: number;
+    roundedGovernment: number;
+    id: UUIDTypes;
+  }>();
   index = input.required<number>();
   showDelete = input.required<boolean>();
 
