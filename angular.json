@@ -11,13 +11,27 @@
           "style": "scss",
           "changeDetection": "OnPush"
         },
-        "@schematics/angular:directive": { "type": "directive" },
-        "@schematics/angular:service": { "type": "service" },
-        "@schematics/angular:guard": { "typeSeparator": "." },
-        "@schematics/angular:interceptor": { "typeSeparator": "." },
-        "@schematics/angular:module": { "typeSeparator": "." },
-        "@schematics/angular:pipe": { "typeSeparator": "." },
-        "@schematics/angular:resolver": { "typeSeparator": "." }
+        "@schematics/angular:directive": {
+          "type": "directive"
+        },
+        "@schematics/angular:service": {
+          "type": "service"
+        },
+        "@schematics/angular:guard": {
+          "typeSeparator": "."
+        },
+        "@schematics/angular:interceptor": {
+          "typeSeparator": "."
+        },
+        "@schematics/angular:module": {
+          "typeSeparator": "."
+        },
+        "@schematics/angular:pipe": {
+          "typeSeparator": "."
+        },
+        "@schematics/angular:resolver": {
+          "typeSeparator": "."
+        }
       },
       "root": "",
       "sourceRoot": "src",
@@ -92,8 +106,17 @@
             "codeCoverageExclude": ["**/*.{test,spec}.?(c|m)ts"],
             "codeCoverageReporters": ["html", "lcov", "text-summary"]
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
+          }
         }
       }
     }
+  },
+  "cli": {
+    "schematicCollections": ["angular-eslint"]
   }
 }
