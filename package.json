@@ -11,6 +11,7 @@
     "test:watch": "ng test --watch",
     "test:coverage": "ng test --no-watch --code-coverage",
     "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "lint": "ng lint"
   },
   "prettier": {
