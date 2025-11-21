@@ -20,19 +20,6 @@
     "pnpm": "^10.23.0"
   },
   "packageManager": "pnpm@10.23.0",
-  "prettier": {
-    "printWidth": 100,
-    "singleQuote": true,
-    "endOfLine": "crlf",
-    "overrides": [
-      {
-        "files": "*.html",
-        "options": {
-          "parser": "angular"
-        }
-      }
-    ]
-  },
   "private": true,
   "dependencies": {
     "@angular/common": "^20.3.0",
