@@ -21,10 +21,15 @@
 
   <div class="row align-items-end">
     <div class="col-md-4">
-      <label class="form-label fw-semibold text-primary-emphasis">Amount</label>
+      <label
+        for="child-amount-{{ child().id }}"
+        class="form-label fw-semibold text-primary-emphasis"
+        >Amount</label
+      >
       <div class="input-group">
         <span class="input-group-text"><i class="bi bi-currency-pound"></i></span>
         <input
+          id="child-amount-{{ child().id }}"
           class="form-control form-control-lg"
           type="number"
           min="0"

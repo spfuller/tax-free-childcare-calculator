@@ -18,8 +18,12 @@ describe('ChildEntryComponent', () => {
         inputBinding('index', () => 0),
         inputBinding('showDelete', () => true),
 
-        outputBinding('removeChild', () => {}),
-        outputBinding('updateAmount', () => {}),
+        outputBinding('removeChild', () => {
+          // no-op
+        }),
+        outputBinding('updateAmount', () => {
+          // no-op
+        }),
       ],
     });
     component = fixture.componentInstance;

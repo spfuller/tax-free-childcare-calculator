@@ -14,48 +14,48 @@ describe('Calculator Service', () => {
       [100, 100],
       [0, 0],
     ])('%i rounds up to the nearest 10 -> %i', (x, expected) => {
-      expect((service as any).roundUpTo10(x)).toBe(expected);
+      expect(service['roundUpTo10'](x)).toBe(expected);
     });
   });
 
   describe('parentContribution', () => {
     test('calculates parent contribution at 80% of amount', () => {
-      const r = (service as any).parentContribution(100);
+      const r = service['parentContribution'](100);
       expect(r).toBe(80);
     });
 
     test('works for zero', () => {
-      const r = (service as any).parentContribution(0);
+      const r = service['parentContribution'](0);
       expect(r).toBe(0);
     });
 
     test('throws for negative values', () => {
-      expect(() => (service as any).parentContribution(-1)).toThrow();
+      expect(() => service['parentContribution'](-1)).toThrow();
     });
 
     test('rounds to two decimal places', () => {
-      const r = (service as any).parentContribution(10.3333);
+      const r = service['parentContribution'](10.3333);
       expect(r).toBeCloseTo(8.27, 2);
     });
   });
 
   describe('governmentContribution', () => {
     test('calculates government contribution at 20% of amount', () => {
-      const r = (service as any).governmentContribution(100);
+      const r = service['governmentContribution'](100);
       expect(r).toBe(20);
     });
 
     test('works for zero', () => {
-      const r = (service as any).governmentContribution(0);
+      const r = service['governmentContribution'](0);
       expect(r).toBe(0);
     });
 
     test('throws for negative values', () => {
-      expect(() => (service as any).governmentContribution(-1)).toThrow();
+      expect(() => service['governmentContribution'](-1)).toThrow();
     });
 
     test('rounds to two decimal places', () => {
-      const r = (service as any).governmentContribution(10.3333);
+      const r = service['governmentContribution'](10.3333);
       expect(r).toBeCloseTo(2.07, 2);
     });
   });
