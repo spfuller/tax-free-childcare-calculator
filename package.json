@@ -12,7 +12,7 @@
     "test:watch": "ng test --watch",
     "test:coverage": "ng test --no-watch --code-coverage",
     "format": "prettier --write .",
-    "format:check": "prettier --check --config ./package.json --log-level debug --debug-check .",
+    "format:check": "prettier --check .",
     "lint": "ng lint"
   },
   "engines": {
