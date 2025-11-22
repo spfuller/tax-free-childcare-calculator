@@ -1,34 +1,37 @@
 # Tax-Free Childcare Calculator
 
-[![CI](https://github.com/spfuller/tax-free-childcare-calculator/actions/workflows/ci.yml/badge.svg)](https://github.com/spfuller/tax-free-childcare-calculator/actions/workflows/ci.yml)
-[![Coverage Artifacts](https://github.com/spfuller/tax-free-childcare-calculator/actions/workflows/ci.yml/badge.svg?branch=master&label=coverage)](https://github.com/spfuller/tax-free-childcare-calculator/actions/workflows/ci.yml)
+[![CI - build, test, and collect coverage](https://github.com/spfuller/tax-free-childcare-calculator/actions/workflows/ci.yml/badge.svg)](https://github.com/spfuller/tax-free-childcare-calculator/actions/workflows/ci.yml)
+
+[![CD - GitHub Pages](https://github.com/spfuller/tax-free-childcare-calculator/actions/workflows/cd.yml/badge.svg)](https://github.com/spfuller/tax-free-childcare-calculator/actions/workflows/cd.yml)
 
 A modern Angular app to calculate UK tax-free childcare contributions. For every £8 you pay towards childcare, the government contributes £2 (80/20 split).
 
 ## Features
 
 - Add multiple children with individual invoice totals
-- Automatic calculation of your contribution (80%) and government contribution (20%)
-- Running totals for both your total and the government's total contribution
-- Input validation ensures positive numbers only
+- Automatic calculation of parent (80%) and government (20%) contributions
+- Running totals for both parent and government contributions
+- Input validation ensures non-negative numbers only
 - Responsive design with Bootstrap v5
+- Built with Angular standalone components and signals
 
 ## Technical Stack
 
-- Angular 20.3.x with standalone components
-- Modern Angular patterns (signals, computed values, new control flow)
+- Angular 20.3.x (standalone components, signals, new control flow)
+- Vitest for unit tests (via Angular experimental unit-test builder)
 - Bootstrap v5 for styling
-- Vitest for testing via Angular experimental unit-test builder
+- pnpm for package management
+- UUID for stable IDs
 
-## Getting Started
+## Prerequisites
 
-### Prerequisites
+- Node.js >= 24.11.0 (see package.json "engines")
+- pnpm >= 10.23.0 (packageManager configured in package.json)
+- PowerShell (pwsh) recommended for Windows examples (optional)
 
-- Node.js 18 or later
-- npm 9 or later
-- PowerShell Core (pwsh) for Windows users
+Note: package.json includes a preinstall script to enforce pnpm (only-allow pnpm).
 
-### Installation
+## Installation
 
 1. Clone the repository:
 
@@ -40,69 +43,77 @@ cd tax-free-childcare-calculator
 2. Install dependencies:
 
 ```powershell
-npm install
+pnpm install
 ```
 
-### Development Commands
+## pnpm scripts
 
-Start the development server:
+The project uses pnpm. The important scripts available (as defined in package.json):
+
+- start: ng serve
+- build: ng build
+- build:dev: ng build --configuration development
+- build:github: ng build --base-href=/tax-free-childcare-calculator/
+- watch: ng build --watch --configuration development
+- test:watch: ng test --watch
+- test:coverage: ng test --no-watch --code-coverage
+- format: prettier --write .
+- format:check: prettier --check .
+- lint: ng lint
+
+Use them with pnpm, for example:
 
 ```powershell
-npm start
+pnpm start           # start dev server (ng serve)
+pnpm run build       # production build
+pnpm run build:dev   # development build
+pnpm run test:watch  # run tests in watch mode
+pnpm run test:coverage # run tests and generate coverage
+pnpm run format      # run prettier
+pnpm run lint        # run linter
 ```
 
-Then open your browser to http://localhost:4200. The app will automatically reload when you make changes.
+## Development
 
-### Testing Commands
-
-Run tests in watch mode (development):
+Start the dev server:
 
 ```powershell
-npm run test:watch
+pnpm start
 ```
 
-Run tests once (CI mode):
-
-```powershell
-npm run test:ci
-```
-
-Generate coverage report:
-
-```powershell
-npm run test:coverage
-```
-
-### Key Files
-
-- `src/app/calculator/calc.ts` — Pure calculation functions for the 80/20 split
-- `src/app/calculator/calculator.ts` — Main calculator component using signals
-- `src/app/calculator/calculator.html` — Template with Bootstrap styling
-- `src/app/calculator/calc.spec.ts` — Unit tests for calculation logic
-
-### CI/CD and Coverage
-
-The project uses GitHub Actions for continuous integration:
-
-- Automated tests run on every push and pull request
-- Coverage reports are generated and uploaded as artifacts
-- Coverage artifacts are available from the Actions tab (click badges above)
-
-## License
-
-MIT
-
-## Additional Commands
+Open http://localhost:4200. The app will reload on changes.
 
 Build for production:
 
 ```powershell
-npm run build
+pnpm run build
 ```
 
-The build artifacts will be stored in the `dist/` directory.
+Build artifacts are written to `dist/`.
 
-For more information on the Angular CLI and its capabilities, visit the [Angular CLI documentation](https://angular.dev/tools/cli).
+## Key Files
+
+- `src/main.ts` — bootstraps the app (`bootstrapApplication`).
+- `src/app/app.component.ts` — root component.
+- `src/app/app.config.ts` — application providers and config.
+- `src/app/calculator/calculator.component.ts` — main calculator UI and state (signals, computed values).
+- `src/app/calculator/calculator.component.html` — calculator template using new control flow.
+- `src/app/calculator/_services/calculator.service.ts` — pure calculation logic and rounding.
+- `src/app/child-entry/child-entry.component.ts` — per-child entry component.
+- `src/app/child-entry-calculation/child-entry-calculation.component.ts` — contribution display for a single child.
+- `src/app/summary/summary.component.ts` — totals and summary UI.
+- Tests (examples):
+  - `src/app/calculator/_services/calculator.service.spec.ts`
+  - `src/app/calculator/calculator.component.spec.ts`
+  - `src/app/child-entry/child-entry.component.spec.ts`
+  - `src/app/child-entry-calculation/child-entry-calculation.component.spec.ts`
+  - `src/app/summary/summary.component.spec.ts`
+- `package.json` / `pnpm-lock.yaml` — scripts and dependencies.
+
+## CI/CD and Coverage
+
+- GitHub Actions runs tests on push and pull requests.
+- Coverage reports are generated and uploaded as artifacts (see Actions tab).
 
 ## Contributing
 
@@ -111,3 +122,7 @@ For more information on the Angular CLI and its capabilities, visit the [Angular
 3. Commit your changes (`git commit -m 'Add some amazing feature'`)
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
+
+## License
+
+MIT
